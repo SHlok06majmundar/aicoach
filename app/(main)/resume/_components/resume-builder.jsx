@@ -147,9 +147,9 @@ export default function ResumeBuilder({ initialContent }) {
   };
 
   return (
-    <div data-color-mode="dark" className="space-y-4 text-foreground">
+    <div data-color-mode="light" className="space-y-4">
       <div className="flex flex-col md:flex-row justify-between items-center gap-2">
-        <h1 className="font-bold gradient-title text-5xl md:text-6xl text-primary">
+        <h1 className="font-bold gradient-title text-5xl md:text-6xl">
           Resume Builder
         </h1>
         <div className="space-x-2">
@@ -187,13 +187,9 @@ export default function ResumeBuilder({ initialContent }) {
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid w-full grid-cols-2 bg-muted/50">
-          <TabsTrigger value="edit" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-            Form
-          </TabsTrigger>
-          <TabsTrigger value="preview" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-            Markdown
-          </TabsTrigger>
+        <TabsList>
+          <TabsTrigger value="edit">Form</TabsTrigger>
+          <TabsTrigger value="preview">Markdown</TabsTrigger>
         </TabsList>
 
         <TabsContent value="edit">
@@ -201,7 +197,7 @@ export default function ResumeBuilder({ initialContent }) {
             {/* Contact Information */}
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Contact Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 border border-border rounded-lg bg-card text-card-foreground">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 border rounded-lg bg-muted/50">
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Email</label>
                   <Input
@@ -209,10 +205,9 @@ export default function ResumeBuilder({ initialContent }) {
                     type="email"
                     placeholder="your@email.com"
                     error={errors.contactInfo?.email}
-                    className="bg-input border-border text-foreground"
                   />
                   {errors.contactInfo?.email && (
-                    <p className="text-sm text-destructive">
+                    <p className="text-sm text-red-500">
                       {errors.contactInfo.email.message}
                     </p>
                   )}
@@ -223,10 +218,9 @@ export default function ResumeBuilder({ initialContent }) {
                     {...register("contactInfo.mobile")}
                     type="tel"
                     placeholder="+1 234 567 8900"
-                    className="bg-input border-border text-foreground"
                   />
                   {errors.contactInfo?.mobile && (
-                    <p className="text-sm text-destructive">
+                    <p className="text-sm text-red-500">
                       {errors.contactInfo.mobile.message}
                     </p>
                   )}
@@ -237,10 +231,9 @@ export default function ResumeBuilder({ initialContent }) {
                     {...register("contactInfo.linkedin")}
                     type="url"
                     placeholder="https://linkedin.com/in/your-profile"
-                    className="bg-input border-border text-foreground"
                   />
                   {errors.contactInfo?.linkedin && (
-                    <p className="text-sm text-destructive">
+                    <p className="text-sm text-red-500">
                       {errors.contactInfo.linkedin.message}
                     </p>
                   )}
@@ -253,10 +246,9 @@ export default function ResumeBuilder({ initialContent }) {
                     {...register("contactInfo.twitter")}
                     type="url"
                     placeholder="https://twitter.com/your-handle"
-                    className="bg-input border-border text-foreground"
                   />
                   {errors.contactInfo?.twitter && (
-                    <p className="text-sm text-destructive">
+                    <p className="text-sm text-red-500">
                       {errors.contactInfo.twitter.message}
                     </p>
                   )}
@@ -264,38 +256,44 @@ export default function ResumeBuilder({ initialContent }) {
               </div>
             </div>
 
-            {/* Professional Summary */}
+            {/* Summary */}
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Professional Summary</h3>
-              <div className="p-4 border border-border rounded-lg bg-card text-card-foreground">
-                <Textarea
-                  {...register("summary")}
-                  placeholder="Write a brief summary of your professional experience..."
-                  className="min-h-[150px] bg-input border-border text-foreground"
-                />
-                {errors.summary && (
-                  <p className="text-sm text-destructive">
-                    {errors.summary.message}
-                  </p>
+              <Controller
+                name="summary"
+                control={control}
+                render={({ field }) => (
+                  <Textarea
+                    {...field}
+                    className="h-32"
+                    placeholder="Write a compelling professional summary..."
+                    error={errors.summary}
+                  />
                 )}
-              </div>
+              />
+              {errors.summary && (
+                <p className="text-sm text-red-500">{errors.summary.message}</p>
+              )}
             </div>
 
             {/* Skills */}
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Skills</h3>
-               <div className="p-4 border border-border rounded-lg bg-card text-card-foreground">
-                <Textarea
-                  {...register("skills")}
-                  placeholder="List your skills, separated by commas..."
-                  className="min-h-[100px] bg-input border-border text-foreground"
-                />
-                {errors.skills && (
-                  <p className="text-sm text-destructive">
-                    {errors.skills.message}
-                  </p>
+              <Controller
+                name="skills"
+                control={control}
+                render={({ field }) => (
+                  <Textarea
+                    {...field}
+                    className="h-32"
+                    placeholder="List your key skills..."
+                    error={errors.skills}
+                  />
                 )}
-               </div>
+              />
+              {errors.skills && (
+                <p className="text-sm text-red-500">{errors.skills.message}</p>
+              )}
             </div>
 
             {/* Experience */}
@@ -404,7 +402,7 @@ export default function ResumeBuilder({ initialContent }) {
             />
           </div>
           <div className="hidden">
-            <div id="resume-pdf" className="prose dark:prose-invert">
+            <div id="resume-pdf">
               <MDEditor.Markdown
                 source={previewContent}
                 style={{

@@ -31,24 +31,26 @@ export default function LandingPage() {
       <HeroSection />
 
       {/* Features Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-background text-foreground">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
         <div className="container mx-auto px-4 md:px-6">
-          <h2 className="text-3xl font-bold tracking-tighter text-center mb-12 text-primary">
+          <h2 className="text-3xl font-bold tracking-tighter text-center mb-12">
             Powerful Features for Your Career Growth
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {features.map((feature, index) => (
               <Card
                 key={index}
-                className="border border-border hover:border-primary transition-colors duration-300 bg-card text-card-foreground p-6 rounded-lg shadow-lg flex flex-col items-center text-center space-y-4"
+                className="border-2 hover:border-primary transition-colors duration-300"
               >
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-foreground">{feature.title}</h3>
-                <p className="text-muted-foreground">
-                  {feature.description}
-                </p>
+                <CardContent className="pt-6 text-center flex flex-col items-center">
+                  <div className="flex flex-col items-center justify-center">
+                    {feature.icon}
+                    <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+                    <p className="text-muted-foreground">
+                      {feature.description}
+                    </p>
+                  </div>
+                </CardContent>
               </Card>
             ))}
           </div>
@@ -56,23 +58,23 @@ export default function LandingPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="w-full py-12 md:py-24 bg-muted/50 text-muted-foreground">
+      <section className="w-full py-12 md:py-24 bg-muted/50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
-            <div className="flex flex-col items-center justify-center space-y-2 p-4 bg-card rounded-lg shadow-lg border border-border">
-              <h3 className="text-4xl font-bold text-primary">50+</h3>
+            <div className="flex flex-col items-center justify-center space-y-2">
+              <h3 className="text-4xl font-bold">50+</h3>
               <p className="text-muted-foreground">Industries Covered</p>
             </div>
-            <div className="flex flex-col items-center justify-center space-y-2 p-4 bg-card rounded-lg shadow-lg border border-border">
-              <h3 className="text-4xl font-bold text-primary">1000+</h3>
+            <div className="flex flex-col items-center justify-center space-y-2">
+              <h3 className="text-4xl font-bold">1000+</h3>
               <p className="text-muted-foreground">Interview Questions</p>
             </div>
-            <div className="flex flex-col items-center justify-center space-y-2 p-4 bg-card rounded-lg shadow-lg border border-border">
-              <h3 className="text-4xl font-bold text-primary">95%</h3>
+            <div className="flex flex-col items-center justify-center space-y-2">
+              <h3 className="text-4xl font-bold">95%</h3>
               <p className="text-muted-foreground">Success Rate</p>
             </div>
-            <div className="flex flex-col items-center justify-center space-y-2 p-4 bg-card rounded-lg shadow-lg border border-border">
-              <h3 className="text-4xl font-bold text-primary">24/7</h3>
+            <div className="flex flex-col items-center justify-center space-y-2">
+              <h3 className="text-4xl font-bold">24/7</h3>
               <p className="text-muted-foreground">AI Support</p>
             </div>
           </div>
@@ -80,10 +82,10 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="w-full py-12 md:py-24 bg-background text-foreground">
+      <section className="w-full py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-primary">How It Works</h2>
+            <h2 className="text-3xl font-bold mb-4">How It Works</h2>
             <p className="text-muted-foreground">
               Four simple steps to accelerate your career growth
             </p>
@@ -93,12 +95,12 @@ export default function LandingPage() {
             {howItWorks.map((item, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center text-center space-y-4 p-6 bg-card rounded-lg shadow-lg border border-border"
+                className="flex flex-col items-center text-center space-y-4"
               >
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
                   {item.icon}
                 </div>
-                <h3 className="font-semibold text-xl text-foreground">{item.title}</h3>
+                <h3 className="font-semibold text-xl">{item.title}</h3>
                 <p className="text-muted-foreground">{item.description}</p>
               </div>
             ))}
@@ -106,15 +108,15 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="w-full py-12 md:py-24 bg-muted/50 text-muted-foreground">
+      <section className="w-full py-12 md:py-24 bg-muted/50">
         <div className="container mx-auto px-4 md:px-6">
-          <h2 className="text-3xl font-bold text-center mb-12 text-primary">
+          <h2 className="text-3xl font-bold text-center mb-12">
             What Our Users Say
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {testimonial.map((testimonial, index) => (
-              <Card key={index} className="bg-card text-card-foreground border border-primary/50 rounded-lg shadow-lg p-6">
-                <CardContent className="pt-0">
+              <Card key={index} className="bg-background">
+                <CardContent className="pt-6">
                   <div className="flex flex-col space-y-4">
                     <div className="flex items-center space-x-4 mb-4">
                       <div className="relative h-12 w-12 flex-shrink-0">
@@ -123,11 +125,11 @@ export default function LandingPage() {
                           height={40}
                           src={testimonial.image}
                           alt={testimonial.author}
-                          className="rounded-full object-cover border-2 border-primary"
+                          className="rounded-full object-cover border-2 border-primary/20"
                         />
                       </div>
                       <div>
-                        <p className="font-semibold text-foreground">{testimonial.author}</p>
+                        <p className="font-semibold">{testimonial.author}</p>
                         <p className="text-sm text-muted-foreground">
                           {testimonial.role}
                         </p>
@@ -156,10 +158,10 @@ export default function LandingPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="w-full py-12 md:py-24 bg-background text-foreground">
+      <section className="w-full py-12 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-primary">
+            <h2 className="text-3xl font-bold mb-4">
               Frequently Asked Questions
             </h2>
             <p className="text-muted-foreground">
@@ -167,16 +169,14 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="max-w-3xl mx-auto border border-border rounded-lg">
+          <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border-border">
-                  <AccordionTrigger className="text-left text-foreground hover:text-primary">
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="text-left">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    {faq.answer}
-                  </AccordionContent>
+                  <AccordionContent>{faq.answer}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
@@ -185,9 +185,9 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="w-full text-foreground py-12 md:py-24">
-        <div className="mx-auto py-12 md:py-16 gradient rounded-lg p-6 text-center">
-          <div className="flex flex-col items-center justify-center space-y-6 max-w-3xl mx-auto">
+      <section className="w-full">
+        <div className="mx-auto py-24 gradient rounded-lg">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold tracking-tighter text-primary-foreground sm:text-4xl md:text-5xl">
               Ready to Accelerate Your Career?
             </h2>
@@ -199,7 +199,7 @@ export default function LandingPage() {
               <Button
                 size="lg"
                 variant="secondary"
-                className="h-11 mt-5 animate-bounce bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg"
+                className="h-11 mt-5 animate-bounce"
               >
                 Start Your Journey Today <ArrowRight className="ml-2 h-4 w-4" />
               </Button>

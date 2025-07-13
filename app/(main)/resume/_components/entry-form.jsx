@@ -105,7 +105,7 @@ export function EntryForm({ type, entries, onChange }) {
     <div className="space-y-4">
       <div className="space-y-4">
         {entries.map((item, index) => (
-          <Card key={index} className="bg-card text-card-foreground">
+          <Card key={index}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 {item.title} @ {item.organization}
@@ -134,7 +134,7 @@ export function EntryForm({ type, entries, onChange }) {
       </div>
 
       {isAdding && (
-        <Card className="bg-card text-card-foreground">
+        <Card>
           <CardHeader>
             <CardTitle>Add {type}</CardTitle>
           </CardHeader>
@@ -145,10 +145,9 @@ export function EntryForm({ type, entries, onChange }) {
                   placeholder="Title/Position"
                   {...register("title")}
                   error={errors.title}
-                  className="bg-input border-border text-foreground"
                 />
                 {errors.title && (
-                  <p className="text-sm text-destructive">{errors.title.message}</p>
+                  <p className="text-sm text-red-500">{errors.title.message}</p>
                 )}
               </div>
               <div className="space-y-2">
@@ -156,10 +155,9 @@ export function EntryForm({ type, entries, onChange }) {
                   placeholder="Organization/Company"
                   {...register("organization")}
                   error={errors.organization}
-                  className="bg-input border-border text-foreground"
                 />
                 {errors.organization && (
-                  <p className="text-sm text-destructive">
+                  <p className="text-sm text-red-500">
                     {errors.organization.message}
                   </p>
                 )}
@@ -172,10 +170,9 @@ export function EntryForm({ type, entries, onChange }) {
                   type="month"
                   {...register("startDate")}
                   error={errors.startDate}
-                  className="bg-input border-border text-foreground"
                 />
                 {errors.startDate && (
-                  <p className="text-sm text-destructive">
+                  <p className="text-sm text-red-500">
                     {errors.startDate.message}
                   </p>
                 )}
@@ -186,17 +183,16 @@ export function EntryForm({ type, entries, onChange }) {
                   {...register("endDate")}
                   disabled={current}
                   error={errors.endDate}
-                  className="bg-input border-border text-foreground"
                 />
                 {errors.endDate && (
-                  <p className="text-sm text-destructive">
+                  <p className="text-sm text-red-500">
                     {errors.endDate.message}
                   </p>
                 )}
               </div>
             </div>
 
-            <div className="flex items-center space-x-2 text-muted-foreground">
+            <div className="flex items-center space-x-2">
               <input
                 type="checkbox"
                 id="current"
@@ -207,7 +203,6 @@ export function EntryForm({ type, entries, onChange }) {
                     setValue("endDate", "");
                   }
                 }}
-                className="form-checkbox h-4 w-4 text-primary rounded border-muted focus:ring-primary bg-input"
               />
               <label htmlFor="current">Current {type}</label>
             </div>
@@ -215,12 +210,12 @@ export function EntryForm({ type, entries, onChange }) {
             <div className="space-y-2">
               <Textarea
                 placeholder={`Description of your ${type.toLowerCase()}`}
-                className="h-32 bg-input border-border text-foreground"
+                className="h-32"
                 {...register("description")}
                 error={errors.description}
               />
               {errors.description && (
-                <p className="text-sm text-destructive">
+                <p className="text-sm text-red-500">
                   {errors.description.message}
                 </p>
               )}
@@ -231,11 +226,10 @@ export function EntryForm({ type, entries, onChange }) {
               size="sm"
               onClick={handleImproveDescription}
               disabled={isImproving || !watch("description")}
-              className="text-primary hover:bg-primary/10"
             >
               {isImproving ? (
                 <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                   Improving...
                 </>
               ) : (
@@ -254,11 +248,10 @@ export function EntryForm({ type, entries, onChange }) {
                 reset();
                 setIsAdding(false);
               }}
-              className="border-border text-foreground hover:bg-muted/50"
             >
               Cancel
             </Button>
-            <Button type="button" onClick={handleAdd} className="bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button type="button" onClick={handleAdd}>
               <PlusCircle className="h-4 w-4 mr-2" />
               Add Entry
             </Button>
@@ -268,7 +261,7 @@ export function EntryForm({ type, entries, onChange }) {
 
       {!isAdding && (
         <Button
-          className="w-full border-border text-foreground hover:bg-muted/50"
+          className="w-full"
           variant="outline"
           onClick={() => setIsAdding(true)}
         >
